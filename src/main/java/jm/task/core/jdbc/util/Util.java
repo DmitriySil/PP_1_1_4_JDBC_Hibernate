@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class Util {
     static String url;
-    static  String login;
+    static String login;
     static String pwd;
     static Connection connection = null;
 
@@ -27,6 +27,7 @@ public class Util {
 
             try {
                 connection = DriverManager.getConnection(url, login, pwd);
+                connection.setAutoCommit(false);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

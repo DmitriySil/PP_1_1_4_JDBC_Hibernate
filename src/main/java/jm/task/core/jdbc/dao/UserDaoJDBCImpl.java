@@ -11,12 +11,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    Statement statement;
-    PreparedStatement preparedStatement;
-    ResultSet resultSet;
-    List<User> list = new LinkedList<>();
+    private Statement statement;
+    private PreparedStatement preparedStatement;
+    private final List<User> list = new LinkedList<>();
 
-    {
+     {
         try {
             statement = Util.getConnection().createStatement();
         } catch (SQLException e) {
@@ -80,8 +79,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        try {
-            resultSet = statement.executeQuery(SELECT_QUERY);
+        try (ResultSet resultSet = statement.executeQuery(SELECT_QUERY)){
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
                 String name = resultSet.getString("username");

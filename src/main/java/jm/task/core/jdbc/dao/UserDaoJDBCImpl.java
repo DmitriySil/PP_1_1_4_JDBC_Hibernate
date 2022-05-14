@@ -88,6 +88,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 User user = new User(name, lastName, age);
                 user.setId(id);
                 list.add(user);
+        return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();

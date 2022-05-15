@@ -13,16 +13,16 @@ public class Main {
 
         //UserDao userDao = new UserDaoJDBCImpl();
         UserDao hibernate = new UserDaoHibernateImpl();
-        //Session session = Util.getSessionFactory().openSession();
+
         hibernate.dropUsersTable();
         hibernate.createUsersTable();
         hibernate.saveUser("Ivan", "Petrov", (byte) 34);
         hibernate.saveUser("Oleg", "Ivanov", (byte) 45);
-       // hibernate.saveUser("Ben", "Ivanov", (byte) 23);
-        //hibernate.saveUser("Boris", "Ivanov", (byte) 64);
-        //hibernate.removeUserById(2);
+        hibernate.saveUser("Ben", "Ivanov", (byte) 23);
+        hibernate.saveUser("Boris", "Ivanov", (byte) 64);
+        hibernate.removeUserById(2);
         hibernate.getAllUsers().forEach(System.out::println);
-        //hibernate.cleanUsersTable();
+        hibernate.cleanUsersTable();
         try {
             Util.getConnection().commit();//про коммиты не совсем понял я
             Util.getConnection().close();

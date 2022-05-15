@@ -24,7 +24,7 @@ public class Main {
         hibernate.getAllUsers().forEach(System.out::println);
         hibernate.cleanUsersTable();
         try {
-            Util.getConnection().commit();//про коммиты не совсем понял я
+            Util.getConnection().commit(); //про коммиты не совсем понял я
             Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();

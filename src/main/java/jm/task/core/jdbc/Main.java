@@ -12,6 +12,7 @@ public class Main {
         // реализуйте алгоритм здесь
 
         //UserDao userDao = new UserDaoJDBCImpl();
+        //Util.getSessionFactory().openSession();
         UserDao hibernate = new UserDaoHibernateImpl();
 
         hibernate.dropUsersTable();
@@ -24,7 +25,8 @@ public class Main {
         hibernate.getAllUsers().forEach(System.out::println);
         hibernate.cleanUsersTable();
         try {
-            Util.getConnection().commit(); //про коммиты не совсем понял я
+            Util.getSessionFactory().close();
+            Util.getConnection().commit();
             Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();
